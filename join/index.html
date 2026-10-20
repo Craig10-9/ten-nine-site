@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join my corner on 10-9</title>
+<meta name="description" content="Five cues a day, scored like a fight. Join my corner on 10-9.">
+<meta property="og:title" content="Get in my corner on 10-9">
+<meta property="og:description" content="Five cues a day, scored like a fight.">
+<meta property="og:image" content="https://craig10-9.github.io/ten-nine-site/join/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#E62314;--navy:#16214F;--ink:#1D1F20;--g6:#5D5D60;--g7:#424244;--rule:rgba(29,31,32,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#fff;color:var(--ink)}
+body{font-family:Barlow,Arial,sans-serif;min-height:100vh;display:flex;justify-content:center}
+main{width:100%;max-width:440px;padding:22px 22px 28px;display:flex;flex-direction:column;min-height:100vh}
+.head{display:flex;align-items:center;gap:9px}
+.head img{width:22px;height:22px}
+.head span{font:700 11px Barlow;letter-spacing:.2em;color:var(--red);text-transform:uppercase}
+.inv{font:700 11px Barlow;letter-spacing:.16em;color:var(--g6);text-transform:uppercase;margin-top:30px}
+h1{font:700 46px/.92 "Barlow Condensed",Arial Narrow,sans-serif;text-transform:uppercase;margin-top:8px;word-break:break-word}
+.lede{font:400 15px/1.45 Barlow;color:var(--g7);margin-top:12px}
+ol{list-style:none;margin-top:16px;border-top:1px solid var(--rule)}
+ol li{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--rule);font:400 14px/1.35 Barlow}
+ol li b{font:700 15px "Barlow Condensed";color:var(--red);width:16px;flex-shrink:0}
+.code{margin-top:18px;padding:12px 14px;border:1px solid rgba(29,31,32,.2);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.code .l{font:700 9.5px Barlow;letter-spacing:.18em;color:var(--g6);text-transform:uppercase}
+.code .c{font:700 32px/1.05 "Barlow Condensed";color:var(--red);letter-spacing:.02em;margin-top:2px}
+.code button{font:700 10px Barlow;letter-spacing:.16em;color:var(--navy);text-transform:uppercase;background:none;border:none;padding:10px 0 10px 10px;cursor:pointer}
+.actions{margin-top:auto;padding-top:24px}
+.btn{height:52px;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;font:700 12px Barlow;letter-spacing:.18em;text-transform:uppercase;text-decoration:none}
+.b1{background:var(--red);color:#fff}
+.b2{border:1px solid var(--navy);color:var(--navy);margin-top:8px}
+.b2.soon{border-style:dashed;color:var(--g6);border-color:rgba(29,31,32,.35);cursor:default}
+.b2 small{font:500 9.5px Barlow;letter-spacing:.12em;color:var(--g6)}
+.foot{font:400 12.5px/1.4 Barlow;color:var(--g6);text-align:center;margin-top:12px}
+.foot a{color:var(--navy)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;font:600 12px Barlow;letter-spacing:.08em;padding:10px 14px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+.nocode h1{font-size:40px}
+</style>
+</head>
+<body>
+<main id="m">
+  <div class="head"><img src="logo.png" alt="10-9"><span>10-9</span></div>
+  <div class="inv" id="inv">You're invited</div>
+  <h1 id="name">Get in the corner</h1>
+  <p class="lede">10-9 is a discipline engine. You get five cues a day, one for each part of your life. Land three and you take the round. Seven rounds make a bout.</p>
+  <ol>
+    <li><b>1</b><span>Download 10-9 below.</span></li>
+    <li><b>2</b><span id="step2">Open it, go to Corner and enter the code.</span></li>
+    <li><b>3</b><span>Fight seven rounds with your corner.</span></li>
+  </ol>
+  <div class="code" id="codebox">
+    <div><div class="l">Your corner code</div><div class="c" id="code"></div></div>
+    <button type="button" id="copy">Copy</button>
+  </div>
+  <div class="actions">
+    <a class="btn b1" id="play" href="https://play.google.com/store/apps/details?id=com.craig.ten9">&#9654;&nbsp; Get it on Google Play</a>
+    <div class="btn b2 soon" id="ios">App Store &nbsp;<small>· coming soon</small></div>
+    <p class="foot" id="open">Already have 10-9? <a id="openlink" href="#">Open it and join</a></p>
+  </div>
+</main>
+<div class="toast" id="toast">Code copied</div>
+<script>
+(function () {
+  var PLAY = "https://play.google.com/store/apps/details?id=com.craig.ten9";
+  var q = new URLSearchParams(location.search);
+  var clean = function (v, max) { return (v || "").replace(/[<>]/g, "").trim().slice(0, max); };
+  var code = clean(q.get("c"), 20).toUpperCase().replace(/[^A-Z0-9-]/g, "");
+  var corner = clean(q.get("n"), 40);
+  var from = clean(q.get("f"), 30);
+
+  var $ = function (id) { return document.getElementById(id); };
+  if (from) $("inv").textContent = from + " invited you";
+  if (corner) { $("name").textContent = corner; document.title = "Join " + corner + " on 10-9"; }
+
+  if (code) {
+    $("code").textContent = code;
+  } else {
+    $("codebox").style.display = "none";
+    $("step2").textContent = "Open it and ask your friend for their corner code.";
+    $("open").style.display = "none";
+  }
+
+  $("copy").addEventListener("click", function () {
+    var done = function () { var t = $("toast"); t.classList.add("on"); setTimeout(function () { t.classList.remove("on"); }, 1600); };
+    if (navigator.clipboard) navigator.clipboard.writeText(code).then(done, done); else done();
+  });
+
+  var ua = navigator.userAgent || "";
+  var isAndroid = /Android/i.test(ua);
+  var isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+  // Android: open the app straight to Corner with the code; if 10-9 isn't
+  // installed, Chrome falls back to the Play Store.
+  var open = $("openlink");
+  if (isAndroid && code) {
+    open.href = "intent://join/" + encodeURIComponent(code) + "#Intent;scheme=tennine;package=com.craig.ten9;S.browser_fallback_url=" + encodeURIComponent(PLAY) + ";end";
+  } else if (code) {
+    open.href = "tennine://join/" + encodeURIComponent(code);
+  }
+
+  // iPhone: put the App Store first and explain it isn't out yet.
+  if (isIOS) {
+    var ios = $("ios"), play = $("play");
+    ios.parentNode.insertBefore(ios, play);
+    ios.style.marginTop = "0";
+    play.style.marginTop = "8px";
+    play.classList.remove("b1"); play.classList.add("b2");
+    ios.innerHTML = "iPhone version coming soon";
+    $("open").textContent = "On Android? Use the Google Play button.";
+  }
+})();
+</script>
+</body>
+</html>

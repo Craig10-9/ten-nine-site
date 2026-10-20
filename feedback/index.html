@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>10-9 · Fighter feedback</title>
+<meta name="description" content="Three minutes. Be honest. That's the whole point of 10-9.">
+<meta property="og:title" content="10-9 · Fighter feedback">
+<meta property="og:description" content="Three minutes. Be honest. That's the whole point of 10-9.">
+<meta property="og:image" content="https://craig10-9.github.io/ten-nine-site/join/og.png">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;700&display=block" rel="stylesheet">
+<style>
+:root{--ink:#1d1f20;--red:#E62314;--coral:#FF6E52;--navy:#16214f;--navyP:#101a3e;--g6:#5d5d60;--g7:#424244;--g5:#7a7a7d;--ph:#9a9a9d;--vh:100vh}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#fff;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{font-family:"Barlow",system-ui,sans-serif;color:var(--ink)}
+button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
+#app{position:relative;max-width:430px;margin:0 auto;height:var(--vh);display:flex;flex-direction:column;overflow:hidden;background:#fff;padding-top:env(safe-area-inset-top);visibility:hidden}
+#app.ready{visibility:visible}
+.bp{position:relative;overflow:visible}
+.bp>.corner{position:absolute;width:11px;height:11px;color:rgba(29,31,32,.55);pointer-events:none}
+.bp>.corner::before,.bp>.corner::after{content:"";position:absolute;background:currentColor}
+.bp>.corner::before{left:5px;top:0;width:1px;height:100%}
+.bp>.corner::after{top:5px;left:0;width:100%;height:1px}
+.corner.tl{top:-6px;left:-6px}.corner.tr{top:-6px;right:-6px}.corner.bl{bottom:-6px;left:-6px}.corner.br{bottom:-6px;right:-6px}
+.cond{font-family:"Barlow Condensed",system-ui,sans-serif;font-weight:700}
+.kick{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--red)}
+.lab{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em}
+.head{display:flex;align-items:center;gap:9px;padding:14px 22px 0;flex:none}
+.head img{width:20px;height:20px;object-fit:contain;display:block}
+.head .k{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--red);white-space:nowrap}
+.x{margin:-12px -12px -12px auto;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:none;border:none;color:var(--g6);cursor:pointer}
+.x:hover{color:var(--ink)}
+.prog{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:3px;padding:16px 22px 0;flex:none}
+.prog i{display:block;height:3px;margin-top:3px;background:#e6e6e8}
+.prog i.d{background:var(--navy)}.prog i.c{height:6px;margin-top:0;background:var(--red)}
+.qh{padding:26px 22px 0;flex:none}
+.qh h2{font-family:"Barlow Condensed",system-ui,sans-serif;font-size:36px;font-weight:700;line-height:1;text-transform:uppercase;margin:10px 0 0;text-wrap:pretty}
+.hint{font-size:13px;color:var(--g6);margin-top:8px}
+.zone{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 22px;min-height:0}
+.zone.top{justify-content:flex-start;padding-top:24px}
+.foot{padding:12px 20px 0;display:flex;gap:8px;flex:none}
+.skip{padding:4px 20px 14px;padding-bottom:max(14px,env(safe-area-inset-bottom));min-height:44px;display:flex;justify-content:center;flex:none}
+.skip button{min-height:44px;background:none;border:none;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--g6);cursor:pointer}
+.skip button:hover{color:var(--red)}
+.back{width:56px;height:56px;flex-shrink:0;background:transparent;border:1px solid rgba(29,31,32,.3);color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.back:hover{border-color:var(--ink)}
+.prim{flex:1;height:56px;background:var(--navy);border:1px solid var(--navy);color:#f2f2f3;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer}
+.prim:hover{background:var(--navyP)}
+.prim[disabled]{opacity:.45;cursor:default}.prim[disabled]:hover{background:var(--navy)}
+/* single */
+.rows{border-top:1px solid rgba(29,31,32,.4)}
+.row{display:grid;grid-template-columns:28px minmax(0,1fr) 22px;gap:10px;align-items:center;width:100%;min-height:60px;padding:0 2px;background:none;border:none;border-bottom:1px solid rgba(29,31,32,.14);text-align:left;cursor:pointer}
+.row:hover{background:#f7f7f8}
+.row .n{font-family:"Barlow Condensed";font-size:16px;font-weight:700;color:var(--g5)}
+.row .t{font-family:"Barlow Condensed";font-size:24px;font-weight:700;line-height:1.05;text-transform:uppercase;padding:8px 0}
+.row .r{width:22px;height:22px;border:1px solid var(--ink);display:flex;align-items:center;justify-content:center}
+.row.on .n{color:var(--red)}.row.on .r{border:2px solid var(--red)}.row.on .r::after{content:"";width:10px;height:10px;background:var(--red)}
+/* text */
+.fld{display:flex;flex-direction:column;gap:8px}
+.box{min-height:132px;padding:12px 14px;border:1px solid rgba(29,31,32,.3);display:flex}
+.box.on{border-color:var(--ink)}
+.box textarea,.box input{flex:1;width:100%;border:none;outline:none;resize:none;background:transparent;font:16px/1.4 "Barlow",system-ui,sans-serif;color:var(--ink);caret-color:var(--red);padding:0;margin:0}
+.box textarea::placeholder,.box input::placeholder{color:var(--ph);opacity:1}
+.cnt{padding:0 22px 6px;display:flex;justify-content:flex-end;flex:none;color:var(--g5)}
+/* scale */
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;align-items:end}
+.steps button{display:flex;align-items:flex-start;justify-content:center;padding-top:10px;background:transparent;border:1px solid rgba(29,31,32,.24);color:var(--ink);font-family:"Barlow Condensed";font-size:22px;font-weight:700;cursor:pointer}
+.steps button:hover{border-color:var(--ink)}
+.steps button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.ends{display:flex;justify-content:space-between;margin-top:12px;color:var(--g6)}
+.read{display:flex;align-items:baseline;gap:12px;margin-top:36px;padding-top:14px;border-top:1px solid rgba(29,31,32,.14)}
+.read .v{font-family:"Barlow Condensed";font-size:64px;font-weight:700;line-height:.85;color:var(--red)}
+.read .w{font-family:"Barlow Condensed";font-size:24px;font-weight:700;text-transform:uppercase}
+/* pick */
+.cells{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:rgba(29,31,32,.16);border:1px solid rgba(29,31,32,.16)}
+.cell{display:flex;flex-direction:column;justify-content:space-between;gap:10px;min-height:82px;padding:12px;background:#fff;border:none;text-align:left;color:var(--ink);cursor:pointer}
+.cell:hover{background:#f7f7f8}
+.cell .n{font-family:"Barlow Condensed";font-size:14px;font-weight:700;color:var(--g5)}
+.cell .t{font-family:"Barlow Condensed";font-size:20px;font-weight:700;line-height:1.05;text-transform:uppercase}
+.cell.wide{grid-column:1/-1;min-height:56px;flex-direction:row;align-items:center}
+.cell.on{background:var(--navy);color:#f2f2f3}.cell.on:hover{background:var(--navyP)}.cell.on .n{color:var(--coral)}
+.cell.off{opacity:.45;cursor:default}.cell.off:hover{background:#fff}
+.picked{display:flex;justify-content:flex-end;margin-top:10px;color:var(--g5)}.picked.r{color:var(--red)}
+/* yes/no */
+.yn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.yn button{height:56px;background:transparent;border:1px solid rgba(29,31,32,.3);color:var(--ink);font-family:"Barlow Condensed";font-size:24px;font-weight:700;text-transform:uppercase;cursor:pointer}
+.yn button:hover{border-color:var(--ink)}
+.yn button.on{background:var(--navy);border-color:var(--navy);color:#f2f2f3}
+/* nps */
+.nps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.nps button{height:56px;background:transparent;border:1px solid rgba(29,31,32,.24);color:var(--ink);font-family:"Barlow Condensed";font-size:24px;font-weight:700;cursor:pointer}
+.nps button:hover{border-color:var(--ink)}
+.nps button.on{background:var(--red);border-color:var(--red);color:#fff}
+.nps span{display:flex;align-items:center;justify-content:center;color:var(--g5)}
+/* big */
+.big{font-family:"Barlow Condensed",system-ui,sans-serif;font-size:72px;font-weight:700;line-height:.86;text-transform:uppercase;margin:14px 0 0}
+.body{margin:18px 0 0;font-size:16px;line-height:1.45;color:var(--g7);max-width:300px;text-wrap:pretty}
+.meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:48px;border-top:1px solid rgba(29,31,32,.4)}
+.meta>div{padding:10px 0 0 12px;border-left:1px solid rgba(29,31,32,.14)}
+.meta>div:first-child{padding-left:0;border-left:none}
+.meta .v{font-family:"Barlow Condensed";font-size:28px;font-weight:700;line-height:1}
+.meta .l{margin-top:4px;color:var(--g6)}
+.err{font-size:11px;font-weight:700;color:var(--red);margin-top:6px;min-height:14px}
+.card{margin-top:36px;padding:16px 16px 14px;border:1px solid var(--red)}
+.card .top{display:flex;justify-content:space-between;align-items:baseline;color:var(--red)}
+.card .c{font-family:"Barlow Condensed";font-size:28px;font-weight:700;line-height:1.05;text-transform:uppercase;margin-top:8px}
+.scrim{position:fixed;inset:0;background:rgba(14,20,48,.55);display:flex;align-items:flex-end;justify-content:center;z-index:10}
+.sheet{width:100%;max-width:430px;background:#fff;padding:24px 22px 0}
+.sheet h3{font-family:"Barlow Condensed";font-size:32px;font-weight:700;line-height:1;text-transform:uppercase;margin:0}
+.sheet p{font-size:15px;line-height:1.45;color:var(--g7);margin:10px 0 0}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.min.js"></script>
+<script>
+(function () {
+  // Same Supabase project as the app. This is the public key the app itself
+  // ships with; Row Level Security means each person can only touch their own row.
+  var SB_URL = "https://suutjclfmknwckcleial.supabase.co";
+  var SB_KEY = "sb_publishable_UHNZF4J-WBW14JDXaKmaGQ_8avkArib";
+  var sb = window.supabase.createClient(SB_URL, SB_KEY, { auth: { persistSession: true, storageKey: "tn_feedback_auth" } });
+
+  var Q = [
+    { id: "q1", type: "single", t: "How long have you been using 10-9?", o: ["Less than a week", "1–2 weeks", "3–4 weeks", "Over a month"] },
+    { id: "q2", type: "single", t: "How many rounds have you logged so far?", o: ["1–3", "4–7", "8–14", "15+"] },
+    { id: "q3", type: "text", t: "In one sentence, what do you think 10-9 is for?", ph: "e.g. Showing up for myself every day" },
+    { id: "q4", type: "scale", t: "How easy was it to get started?" },
+    { id: "q5", type: "pick", t: "Which part keeps you coming back?", hint: "Pick up to two.", o: ["The daily five cues", "Winning rounds", "My Fighter Card and division", "My corner", "The coach messages", "My Why", "Nothing yet"] },
+    { id: "q6", type: "text", opt: true, t: "Have you missed a day? If so, what got in the way?", ph: "e.g. Long shift, forgot to log" },
+    { id: "q7", type: "single", t: "Are the cues the right difficulty for you?", o: ["Too easy", "About right", "Too hard", "Mixed. Some are great, some aren’t for me"] },
+    { id: "q8", type: "text", opt: true, t: "Is there a cue you’d remove, or one you wish existed?", ph: "e.g. Swap cold water for a walk" },
+    { id: "q9", type: "single", t: "Have you used Corner?", o: ["Yes, I’m in one", "I tried but couldn’t get people in", "No, I train alone", "Didn’t know what it was"] },
+    { id: "q10", type: "yn", t: "Did anything look broken or wrong on your phone?", hint: "Text overlapping, screens cut off, needing to scroll." },
+    { id: "q11", type: "nps", t: "How likely are you to recommend 10-9 to a friend?" },
+    { id: "q12", type: "text", t: "If you could change one thing about 10-9, what would it be?", ph: "One thing" }
+  ];
+  var SCALE = ["Lost me", "Took a while", "Got there", "Pretty easy", "Straight in"];
+  var MAX = 140;
+
+  var app = document.getElementById("app");
+  var S = { screen: "loading", i: 0, a: {}, answered: {}, user: null, sending: false, err: "", modal: false, email: "", emailErr: "", done: false };
+
+  function key() { return "tn_feedback_" + (S.user ? S.user.id : "anon"); }
+  function save() { try { localStorage.setItem(key(), JSON.stringify({ i: S.i, a: S.a, answered: S.answered })); } catch (e) {} }
+  function load() { try { var v = JSON.parse(localStorage.getItem(key()) || "null"); if (v) { S.a = v.a || {}; S.answered = v.answered || {}; } } catch (e) {} }
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function pad(n) { return n < 10 ? "0" + n : "" + n; }
+  var CORNERS = '<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>';
+  var X_SVG = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:block"><path d="M18 6 6 18M6 6l12 12"/></svg>';
+  var NEXT_SVG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:block"><path d="m9 18 6-6-6-6"/></svg>';
+  var BACK_SVG = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m15 18-6-6 6-6"/></svg>';
+
+  function head(withX) {
+    return '<div class="head"><img src="logo.png" alt="10-9"><span class="k">Feedback</span>' +
+      (withX ? '<button class="x" data-act="close" aria-label="Close">' + X_SVG + '</button>' : '') + '</div>';
+  }
+  function prog() {
+    var h = '<div class="prog">';
+    for (var k = 0; k < 12; k++) h += '<i class="' + (k < S.i ? "d" : k === S.i ? "c" : "") + '"></i>';
+    return h + '</div>';
+  }
+  function valid(q) {
+    var v = S.a[q.id];
+    if (q.opt) return true;
+    if (q.type === "text") return !!(v && v.trim());
+    if (q.type === "pick") return !!(v && v.length);
+    if (q.type === "yn") return v === true || v === false;
+    return v != null;
+  }
+  function footer(q) {
+    var last = S.i === Q.length - 1;
+    return '<div class="foot"><button class="back" data-act="back" aria-label="Previous question" style="' + (S.i === 0 ? "visibility:hidden" : "") + '">' + BACK_SVG + '</button>' +
+      '<button class="prim bp" data-act="next"' + (valid(q) && !S.sending ? "" : " disabled") + '>' + CORNERS + (S.sending ? "Sending…" : last ? "Send feedback" : "Next" + NEXT_SVG) + '</button></div>' +
+      '<div class="skip">' + (q.opt ? '<button data-act="skip">Skip</button>' : S.err ? '<span class="err">' + esc(S.err) + '</span>' : '') + '</div>';
+  }
+  function textBox(id, val, ph, minH, tag) {
+    var on = val && String(val).length ? " on" : "";
+    var inner = tag === "input"
+      ? '<input data-f="' + id + '" maxlength="' + MAX + '" value="' + esc(val) + '" placeholder="' + esc(ph) + '">'
+      : '<textarea data-f="' + id + '" maxlength="' + MAX + '" placeholder="' + esc(ph) + '">' + esc(val) + '</textarea>';
+    return '<div class="box bp' + on + '" style="min-height:' + minH + 'px">' + CORNERS + inner + '</div>';
+  }
+
+  function screenSignIn() {
+    return head(false) +
+      '<div class="zone"><span class="kick">Fighter feedback</span><h2 class="big">Sign<br>in.</h2>' +
+      '<p class="body">Use the email and password you use in the 10-9 app.</p>' +
+      '<div style="margin-top:32px" class="fld"><span class="lab">Email</span>' + textBox("si_email", S.siEmail || "", "you@example.com", 52, "input") + '</div>' +
+      '<div style="margin-top:18px" class="fld"><span class="lab">Password</span>' + textBox("si_pass", "", "Password", 52, "input") + '</div>' +
+      '<div class="err">' + esc(S.err) + '</div></div>' +
+      '<div class="foot"><button class="prim bp" data-act="signin"' + (S.sending ? " disabled" : "") + '>' + CORNERS + (S.sending ? "Signing in…" : "Sign in") + '</button></div>' +
+      '<div class="skip"><span class="lab" style="color:var(--g6);display:flex;align-items:center">Forgot it? Reset it in the app.</span></div>';
+  }
+  function screenIntro() {
+    return head(true) +
+      '<div class="zone"><span class="kick">Fighter feedback</span><h2 class="big">Three<br>minutes.<br>Be honest.</h2>' +
+      '<p class="body">That’s the whole point of 10-9.</p>' +
+      '<div class="meta"><div><div class="v">12</div><div class="l lab">Questions</div></div><div><div class="v">3</div><div class="l lab">Minutes</div></div><div><div class="v" style="color:var(--red)">+1</div><div class="l lab">Integrity</div></div></div></div>' +
+      '<div class="foot"><button class="prim bp" data-act="start">' + CORNERS + (Object.keys(S.answered).length ? "Carry on" : "Start") + '</button></div>' +
+      '<div class="skip"><button data-act="signout">Not now</button></div>';
+  }
+  function screenQ() {
+    var q = Q[S.i], v = S.a[q.id], h = head(true) + prog() +
+      '<div class="qh"><span class="kick">Question ' + pad(S.i + 1) + ' of 12</span><h2>' + esc(q.t) + '</h2>' + (q.hint && q.type !== "yn" ? '<div class="hint">' + esc(q.hint) + '</div>' : (q.type === "yn" ? '<div class="hint">' + esc(q.hint) + '</div>' : '')) + '</div>';
+    if (q.type === "single") {
+      h += '<div class="zone"><div class="rows">';
+      q.o.forEach(function (o, k) { h += '<button class="row' + (v === o ? " on" : "") + '" data-act="pick1" data-v="' + k + '"><span class="n">' + pad(k + 1) + '</span><span class="t">' + esc(o) + '</span><span class="r"></span></button>'; });
+      h += '</div></div>';
+    } else if (q.type === "text") {
+      h += '<div class="zone top"><div class="fld"><span class="lab">Your answer</span>' + textBox(q.id, v || "", q.ph, 132) + '</div></div>' +
+        '<div class="cnt"><span class="lab" id="cnt">' + (v || "").length + ' / ' + MAX + '</span></div>';
+    } else if (q.type === "scale") {
+      var hs = [56, 74, 92, 110, 128];
+      h += '<div class="zone"><div class="steps">';
+      for (var k = 1; k <= 5; k++) h += '<button class="' + (v && k <= v ? "on" : "") + '" style="height:' + hs[k - 1] + 'px" data-act="scale" data-v="' + k + '">' + k + '</button>';
+      h += '</div><div class="ends lab"><span>Lost me</span><span>Straight in</span></div>' +
+        '<div class="read" style="visibility:' + (v ? "visible" : "hidden") + '"><span class="v">' + (v || 1) + '</span><span class="w">' + esc(SCALE[(v || 1) - 1]) + '</span></div></div>';
+    } else if (q.type === "pick") {
+      var arr = v || [], full = arr.length >= 2;
+      h += '<div class="zone"><div class="cells">';
+      q.o.forEach(function (o, k) {
+        var on = arr.indexOf(o) >= 0, off = full && !on;
+        h += '<button class="cell' + (k === 6 ? " wide" : "") + (on ? " on" : "") + (off ? " off" : "") + '" data-act="pick2" data-v="' + k + '"' + (off ? " disabled" : "") + '><span class="n">' + pad(k + 1) + '</span><span class="t">' + esc(o) + '</span></button>';
+      });
+      h += '</div><div class="picked lab' + (arr.length ? " r" : "") + '">' + arr.length + ' of 2 picked</div></div>';
+    } else if (q.type === "yn") {
+      h += '<div style="padding:20px 22px 0;flex:none"><div class="yn">' +
+        '<button class="' + (v === true ? "on bp" : "") + '" data-act="yn" data-v="1">' + (v === true ? CORNERS : "") + 'Yes</button>' +
+        '<button class="' + (v === false ? "on bp" : "") + '" data-act="yn" data-v="0">' + (v === false ? CORNERS : "") + 'No</button></div></div>';
+      if (v === true) {
+        h += '<div class="zone top" style="gap:18px"><div class="fld"><span class="lab">What happened, and on which screen?</span>' + textBox("q10_detail", S.a.q10_detail || "", "e.g. Score button cut off on Today", 96) + '</div>' +
+          '<div class="fld"><span class="lab">What phone do you have?</span>' + textBox("q10_phone", S.a.q10_phone != null ? S.a.q10_phone : (S.model || ""), "e.g. Samsung Galaxy A52", 52, "input") + '</div></div>';
+      } else h += '<div class="zone"></div>';
+    } else if (q.type === "nps") {
+      h += '<div class="zone"><div class="nps">';
+      for (var n = 0; n <= 10; n++) h += '<button class="' + (v === n ? "on" : "") + '" data-act="nps" data-v="' + n + '">' + n + '</button>';
+      h += '<span class="lab">/ 10</span></div><div class="ends lab"><span>0 · Not a chance</span><span>Already have · 10</span></div></div>';
+    }
+    return h + footer(q);
+  }
+  function screenThanks() {
+    return head(false) +
+      '<div class="zone"><span class="kick" style="color:var(--g6)">' + (S.already ? "Already sent" : "Feedback sent") + '</span><h2 class="big">Thanks.</h2>' +
+      '<p class="cond" style="margin:16px 0 0;font-size:32px;line-height:1.05;text-transform:uppercase;text-wrap:pretty">That’s a cue landed for <span style="color:var(--red)">Integrity</span> in our book.</p>' +
+      '<div class="card bp">' + CORNERS + '<div class="top"><span class="kick">Integrity</span><span class="lab">In our book</span></div><div class="c">Told the truth when it was easier not to.</div></div>' +
+      (S.already ? '' : '<div style="margin-top:32px;padding-top:14px;border-top:1px solid rgba(29,31,32,.14)" class="fld"><span class="lab">Can I contact you about your answers?</span>' +
+        '<div class="box bp' + (S.emailErr ? '" style="min-height:52px;border-color:var(--red)' : (S.email ? ' on" style="min-height:52px' : '" style="min-height:52px')) + '">' + CORNERS + '<input data-f="email" type="email" value="' + esc(S.email) + '" placeholder="Email (optional)"' + (S.done ? " disabled" : "") + '></div>' +
+        '<div class="err">' + (S.emailErr ? "Check the email" : "") + '</div></div>') + '</div>' +
+      '<div class="foot"><button class="prim bp" data-act="done"' + (S.done || S.sending ? " disabled" : "") + '>' + CORNERS + (S.done ? "All done" : "Done") + '</button></div>' +
+      '<div class="skip"><span class="lab" style="color:var(--g6);display:flex;align-items:center">' + (S.done ? "You can close this page." : "") + '</span></div>';
+  }
+  function modal() {
+    return '<div class="scrim" data-act="keep"><div class="sheet" data-stop="1"><h3>Leave feedback?</h3><p>Your answers so far are saved. Come back to this link any time to finish.</p>' +
+      '<div class="foot" style="padding:20px 0 0"><button class="prim bp" data-act="leave">' + CORNERS + 'Leave</button></div>' +
+      '<div class="skip" style="padding-left:0;padding-right:0"><button data-act="keep">Keep going</button></div></div></div>';
+  }
+
+  function render(focusId) {
+    var h = S.screen === "signin" ? screenSignIn() : S.screen === "intro" ? screenIntro() : S.screen === "q" ? screenQ() : S.screen === "thanks" ? screenThanks() : "";
+    app.innerHTML = h + (S.modal ? modal() : "");
+    var f = focusId && app.querySelector('[data-f="' + focusId + '"]');
+    if (f) { f.focus(); var l = f.value.length; try { f.setSelectionRange(l, l); } catch (e) {} }
+  }
+
+  var advanceTimer = null;
+  function go(i) { S.i = i; S.err = ""; save(); render(); }
+  function autoAdvance(q) {
+    if (S.answered[q.id]) { save(); render(); return; }
+    S.answered[q.id] = true; save(); render();
+    clearTimeout(advanceTimer);
+    advanceTimer = setTimeout(function () { if (S.screen === "q" && Q[S.i] === q && S.i < Q.length - 1) go(S.i + 1); }, 340);
+  }
+
+  async function stats() {
+    var out = { rounds_logged: null, first_round_date: null };
+    try {
+      var r = await sb.from("rounds").select("round_date", { count: "exact" }).not("submitted_at", "is", null).order("round_date", { ascending: true }).limit(1);
+      if (!r.error) { out.rounds_logged = r.count; out.first_round_date = r.data && r.data[0] ? r.data[0].round_date : null; }
+    } catch (e) {}
+    return out;
+  }
+  async function send() {
+    S.sending = true; S.err = ""; render();
+    var a = S.a, st = await stats();
+    var row = {
+      q1: a.q1 || null, q2: a.q2 || null, q3: (a.q3 || "").trim() || null, q4: a.q4 || null, q5: a.q5 || null,
+      q6: (a.q6 || "").trim() || null, q7: a.q7 || null, q8: (a.q8 || "").trim() || null, q9: a.q9 || null,
+      q10: a.q10 === true, q10_detail: a.q10 === true ? ((a.q10_detail || "").trim() || null) : null,
+      q10_phone: a.q10 === true ? ((a.q10_phone != null ? a.q10_phone : S.model || "").trim() || null) : null,
+      q11: a.q11 != null ? a.q11 : null, q12: (a.q12 || "").trim() || null,
+      rounds_logged: st.rounds_logged, first_round_date: st.first_round_date,
+      platform: /Android/i.test(navigator.userAgent) ? "android" : /iPhone|iPad|iPod/i.test(navigator.userAgent) ? "ios" : "web",
+      user_agent: navigator.userAgent.slice(0, 300)
+    };
+    var res = await sb.from("feedback").insert(row).select("id").single();
+    S.sending = false;
+    if (res.error) { S.err = "Couldn’t send. Check your connection and try again."; render(); return; }
+    S.rowId = res.data.id;
+    try { localStorage.removeItem(key()); } catch (e) {}
+    S.screen = "thanks"; render();
+  }
+  async function done() {
+    var em = (S.email || "").trim();
+    if (em && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) { S.emailErr = true; render("email"); return; }
+    S.emailErr = false;
+    if (em && S.rowId) { S.sending = true; render(); await sb.from("feedback").update({ contact_email: em }).eq("id", S.rowId); S.sending = false; }
+    S.done = true; render();
+  }
+
+  app.addEventListener("click", async function (e) {
+    var el = e.target.closest("[data-act]");
+    if (!el) return;
+    if (el.dataset.act === "keep" && e.target.closest("[data-stop]") && !e.target.closest('button[data-act="keep"]')) return;
+    var act = el.dataset.act, q = Q[S.i];
+    if (act === "signin") {
+      var em = (app.querySelector('[data-f="si_email"]').value || "").trim(), pw = app.querySelector('[data-f="si_pass"]').value || "";
+      S.siEmail = em;
+      if (!em || !pw) { S.err = "Enter your email and password."; render(); return; }
+      S.sending = true; S.err = ""; render();
+      var r = await sb.auth.signInWithPassword({ email: em, password: pw });
+      S.sending = false;
+      if (r.error) { S.err = "That email and password didn’t match. Use the ones from the 10-9 app."; render(); return; }
+      await afterSignIn(r.data.user);
+    } else if (act === "start") { S.screen = "q"; var first = Q.findIndex(function (qq) { return !S.answered[qq.id]; }); go(first < 0 ? 0 : first); }
+    else if (act === "signout") { await sb.auth.signOut(); S.user = null; S.a = {}; S.answered = {}; S.screen = "signin"; render(); }
+    else if (act === "close") { S.modal = true; render(); }
+    else if (act === "keep") { S.modal = false; render(); }
+    else if (act === "leave") { S.modal = false; save(); S.screen = "intro"; render(); }
+    else if (act === "back") { if (S.i > 0) go(S.i - 1); }
+    else if (act === "skip") { if (q.type === "text") S.a[q.id] = ""; S.answered[q.id] = true; if (S.i < Q.length - 1) go(S.i + 1); else send(); }
+    else if (act === "next") {
+      if (!valid(q)) return;
+      S.answered[q.id] = true; save();
+      if (S.i < Q.length - 1) go(S.i + 1); else send();
+    }
+    else if (act === "pick1") { S.a[q.id] = q.o[+el.dataset.v]; autoAdvance(q); }
+    else if (act === "scale") { S.a[q.id] = +el.dataset.v; autoAdvance(q); }
+    else if (act === "nps") { S.a[q.id] = +el.dataset.v; autoAdvance(q); }
+    else if (act === "pick2") {
+      var o = q.o[+el.dataset.v], arr = (S.a[q.id] || []).slice(), at = arr.indexOf(o);
+      if (at >= 0) arr.splice(at, 1);
+      else if (o === "Nothing yet") arr = [o];
+      else { arr = arr.filter(function (x) { return x !== "Nothing yet"; }); if (arr.length < 2) arr.push(o); }
+      S.a[q.id] = arr; save(); render();
+    }
+    else if (act === "yn") {
+      var yes = el.dataset.v === "1";
+      S.a.q10 = yes;
+      if (!yes) { delete S.a.q10_detail; delete S.a.q10_phone; autoAdvance(q); } else { save(); render(); }
+    }
+    else if (act === "done") { done(); }
+  });
+  app.addEventListener("input", function (e) {
+    var f = e.target.dataset && e.target.dataset.f;
+    if (!f) return;
+    var val = e.target.value;
+    if (f === "si_email" || f === "si_pass") return;
+    if (f === "email") { S.email = val; S.emailErr = false; e.target.closest(".box").classList.toggle("on", !!val); return; }
+    if (val.length > MAX) { val = val.slice(0, MAX); e.target.value = val; }
+    S.a[f] = val; save();
+    e.target.closest(".box").classList.toggle("on", !!val);
+    var c = document.getElementById("cnt"); if (c) c.textContent = val.length + " / " + MAX;
+    var nb = app.querySelector('[data-act="next"]'); if (nb) nb.disabled = !valid(Q[S.i]);
+  });
+  app.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter") return;
+    var f = e.target.dataset && e.target.dataset.f;
+    if (f === "si_email") { e.preventDefault(); var p = app.querySelector('[data-f="si_pass"]'); if (p) p.focus(); return; }
+    if (f === "si_pass") { e.preventDefault(); app.querySelector('[data-act="signin"]').click(); return; }
+    if (f === "email") { e.preventDefault(); done(); return; }
+    if (f && S.screen === "q") { e.preventDefault(); var nb = app.querySelector('[data-act="next"]'); if (nb && !nb.disabled) nb.click(); }
+  });
+
+  async function afterSignIn(user) {
+    S.user = user; load();
+    try {
+      var r = await sb.from("feedback").select("id").limit(1);
+      if (!r.error && r.data && r.data.length) { S.already = true; S.done = true; S.screen = "thanks"; render(); return; }
+    } catch (e) {}
+    S.screen = "intro"; render();
+  }
+
+  // Phone model for Q10, where the browser shares it.
+  (async function () {
+    try {
+      if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
+        var h = await navigator.userAgentData.getHighEntropyValues(["model"]); if (h.model) { S.model = h.model; return; }
+      }
+      var m = navigator.userAgent.match(/Android [\d.]+; ([^;)]+)/); if (m && !/^K$/.test(m[1])) S.model = m[1].trim();
+      else if (/iPhone/.test(navigator.userAgent)) S.model = "iPhone";
+    } catch (e) {}
+  })();
+
+  // Keep the footer above the on-screen keyboard.
+  function fit() { var h = window.visualViewport ? window.visualViewport.height : window.innerHeight; document.documentElement.style.setProperty("--vh", h + "px"); }
+  fit(); if (window.visualViewport) window.visualViewport.addEventListener("resize", fit); window.addEventListener("resize", fit);
+
+  (async function boot() {
+    try { await Promise.race([document.fonts.ready, new Promise(function (r) { setTimeout(r, 2500); })]); } catch (e) {}
+    app.classList.add("ready");
+    var s = await sb.auth.getSession();
+    if (s.data && s.data.session) await afterSignIn(s.data.session.user);
+    else { S.screen = "signin"; render(); }
+  })();
+})();
+</script>
+</body>
+</html>

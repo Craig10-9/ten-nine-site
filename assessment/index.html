@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>10-9 Assessment</title>
+<meta name="description" content="A 25-item assessment to map your discipline profile and personality traits.">
+<meta property="og:title" content="10-9 Assessment: discipline is a skill">
+<meta property="og:description" content="25 statements, 4 minutes. Get your discipline profile and your 10-9 Benefit Index.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#17265c;--deep:#0f1937;--red:#D93B26;--coral:#F0563A;--ink:#1a1a1a;--grey:#f2f2f2;--b2:#4a4a4a;--b3:#6e6e6e;--rule:rgba(26,26,26,.13)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#fff;color:var(--ink)}
+body{font-family:Poppins,system-ui,sans-serif;min-height:100vh;-webkit-text-size-adjust:100%}
+button,input{font-family:inherit}
+a{color:var(--red)}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.k{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.plate{background:#fff;color:var(--navy);padding:0 10px;display:inline-block}
+.plate.dk{background:var(--ink);color:#fff;padding:0 8px}
+.wrap{max-width:820px;margin:0 auto;width:100%}
+.w10{max-width:1000px;margin:0 auto}
+.bar{background:var(--navy);padding:18px 22px 24px}
+.brow{display:flex;align-items:baseline;gap:14px}
+.logo{font-size:17px;font-weight:800;letter-spacing:.02em;color:#fff}
+.right{margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.cta{display:inline-block;position:relative}
+.cta:before{content:"";position:absolute;left:-6px;top:6px;right:6px;bottom:-6px;border:1px solid rgba(255,255,255,.5)}
+.cta.on-light:before{border-color:rgba(26,26,26,.35)}
+.cta.full{display:block;margin-left:6px}.cta.full button{width:100%;justify-content:center;padding:0 16px}
+.cta button,.cta a{position:relative;height:56px;padding:0 34px;background:var(--red);border:0;color:#fff;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;text-decoration:none}
+.foot{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--rule);padding:14px 22px calc(14px + env(safe-area-inset-bottom))}
+.foot .wrap{display:flex;gap:10px}
+.bk{flex:0 0 120px;height:54px;background:var(--grey);border:0;color:var(--ink);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+.nx{flex:1;height:54px;border:0;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;background:var(--red);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;text-decoration:none}
+.nx[disabled]{background:var(--grey);color:#9a9a9a;cursor:not-allowed}
+h1.hero{font-size:46px;font-weight:800;line-height:1.04;letter-spacing:-.02em;text-transform:uppercase;color:#fff;margin:30px 0 0}
+h2.t{font-size:34px;font-weight:800;line-height:1.04;letter-spacing:-.015em;text-transform:uppercase;color:#fff;margin:16px 0 0}
+h2.big{font-size:40px;font-weight:800;line-height:1.04;letter-spacing:-.02em;text-transform:uppercase;margin:0}
+h3{font-size:27px;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;margin:10px 0 26px}
+.sec{max-width:1000px;margin:0 auto;padding:44px 22px 0}
+.grid{display:grid;gap:6px}
+.card{background:var(--grey);padding:20px 18px 22px}
+.card .k{color:var(--red);letter-spacing:.16em}
+.card .ti{font-size:18px;font-weight:800;text-transform:uppercase;letter-spacing:-.005em;margin-top:10px}
+.card p{font-size:14px;line-height:1.5;color:var(--b2);margin-top:8px}
+@media (max-width:520px){h1.hero{font-size:38px}h2.big{font-size:32px}h2.t{font-size:28px}.opt{height:68px!important}.opt b{font-size:18px!important}.opt span{font-size:8px!important;letter-spacing:.04em!important}}
+/* quiz */
+.q{margin-bottom:34px;animation:rise .3s ease both}
+.qh{display:flex;gap:16px;align-items:flex-start}
+.qn{flex:0 0 34px;height:34px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800}
+.qh p{margin-top:3px;font-size:20px;font-weight:600;line-height:1.35;letter-spacing:-.01em}
+.opts{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-top:18px}
+.opt{height:76px;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:0 4px;background:var(--grey);color:var(--b2)}
+.opt.on{background:var(--ink);color:#fff}
+.opt b{font-size:20px;font-weight:800;line-height:1}
+.opt span{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;line-height:1.1;text-align:center}
+.pager{display:flex;gap:4px;margin-top:22px}
+.pager div{flex:1;height:24px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;letter-spacing:.06em;background:rgba(255,255,255,.16);color:rgba(255,255,255,.65)}
+.pager .done{background:#fff;color:var(--navy)}
+.pager .cur{background:var(--red);color:#fff}
+/* account */
+.field{display:block;margin-top:16px}
+.field span{display:block;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--b3);margin-bottom:6px}
+.field input{width:100%;height:52px;border:1px solid rgba(26,26,26,.25);border-radius:0;padding:0 14px;font-size:16px;color:var(--ink);background:#fff;outline:none}
+.field input:focus{border-color:var(--navy);box-shadow:inset 0 0 0 1px var(--navy)}
+.tabs{display:flex;gap:6px;margin-top:28px}
+.tabs button{flex:1;height:44px;border:0;background:var(--grey);color:var(--b2);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.tabs button.on{background:var(--ink);color:#fff}
+.tick{display:flex;gap:12px;align-items:flex-start;margin-top:18px;font-size:13px;line-height:1.5;color:var(--b2);cursor:pointer}
+.tick input{width:20px;height:20px;margin-top:1px;accent-color:var(--navy);flex:0 0 auto}
+.err{margin-top:16px;background:#fbe9e6;color:#8f2416;font-size:13px;line-height:1.45;padding:12px 14px;display:none}
+.note{margin-top:16px;background:var(--grey);font-size:13px;line-height:1.5;color:var(--b2);padding:14px 16px}
+.banner{padding:12px 22px;font-size:13px;line-height:1.45;font-weight:600;text-align:center}
+.banner.ok{background:#0f1937;color:#fff}
+.banner.wait{background:var(--coral);color:#fff}
+.lnk{background:none;border:0;border-bottom:2px solid var(--ink);color:var(--ink);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;min-height:44px;padding:0 4px}
+table{width:100%;border-collapse:collapse}
+td,th{border-top:1px solid var(--rule);padding:10px 8px;vertical-align:top}
+th{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--b3);text-align:left}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.min.js"></script>
+<script>
+(function () {
+  // ---- Settings -----------------------------------------------------------
+  var SUPABASE_URL = "https://suutjclfmknwckcleial.supabase.co";
+  var SUPABASE_KEY = "sb_publishable_UHNZF4J-WBW14JDXaKmaGQ_8avkArib";
+  var PLAY = "https://play.google.com/store/apps/details?id=com.craig.ten9";
+  var PAGE_URL = location.origin + location.pathname; // where the confirm-email link returns to
+  var STORE = "tn_assess_v1", PENDING = "tn_assess_pending";
+
+  var sb = null;
+  try { sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: true, detectSessionInUrl: true } }); } catch (e) { console.warn("Supabase unavailable", e); }
+
+  // ---- Content (ids and wording match the app's check-in exactly) ---------
+  var SECTIONS = [
+    { id: "capacity", group: "Five States of 10-9", name: "Capacity", note: "Readiness under load.", abbr: "CAP", items: [
+      "My body and mind feel primed and ready for daily challenges.",
+      "I recover quickly from stress, setbacks, or fatigue.",
+      "My physical and mental energy stays stable throughout the day."] },
+    { id: "clarity", group: "Five States of 10-9", name: "Clarity", note: "Focus and decision.", abbr: "CLA", items: [
+      "I can maintain focus without drifting or getting distracted.",
+      "I make decisions quickly and confidently.",
+      "My environment and workflow stay organised and intentional."] },
+    { id: "integrity", group: "Five States of 10-9", name: "Integrity", note: "Word and action, matched.", abbr: "INT", items: [
+      "I do exactly what I say I will do.",
+      "My actions consistently match my stated values.",
+      "I am honest with myself about my strengths and weaknesses."] },
+    { id: "growth", group: "Five States of 10-9", name: "Growth", note: "Capability, compounding.", abbr: "GRO", items: [
+      "I actively pursue becoming more capable every day.",
+      "I regularly seek new knowledge or skills.",
+      "I embrace challenges rather than avoid them."] },
+    { id: "stewardship", group: "Five States of 10-9", name: "Stewardship", note: "What you are trusted with.", abbr: "STE", items: [
+      "I take responsibility for what is entrusted to me.",
+      "I protect my health, relationships, and environment.",
+      "I contribute positively to the people and systems around me."] },
+    { id: "openness", group: "Big Five Personality Traits", name: "Openness", note: "Curiosity and range.", abbr: "OPEN", items: [
+      "I enjoy exploring new ideas or experiences.",
+      "I am curious about how things work."] },
+    { id: "conscientiousness", group: "Big Five Personality Traits", name: "Conscientiousness", note: "Follow-through.", abbr: "CONSC", items: [
+      "I stick to routines and complete tasks reliably.",
+      "I plan ahead rather than act impulsively."] },
+    { id: "extraversion", group: "Big Five Personality Traits", name: "Extraversion", note: "Social energy.", abbr: "EXTRA", items: [
+      "I feel energised by social interaction.",
+      "I speak up confidently in groups."] },
+    { id: "agreeableness", group: "Big Five Personality Traits", name: "Agreeableness", note: "Regard for others.", abbr: "AGREE", items: [
+      "I care about how my actions affect others.",
+      "I prefer cooperation over competition."] },
+    { id: "neuroticism", group: "Big Five Personality Traits", name: "Neuroticism", note: "Emotional volatility.", abbr: "NEURO", items: [
+      "I often feel stressed or anxious.",
+      "My emotions can fluctuate quickly."] }
+  ];
+  var LABELS = ["Never", "Rarely", "Sometimes", "Often", "Always"];
+  var STATUS = ["Analysing your discipline profile…", "Mapping your personality traits…", "Calculating your 10-9 Benefit Index…"];
+  var STATUS_SHORT = ["Discipline profile", "Personality traits", "Benefit Index"];
+
+  // ---- State --------------------------------------------------------------
+  var S = { screen: "welcome", page: 0, answers: {}, funnelStep: 0, showReport: false, statusIdx: 0, mode: "create", saved: false, waitEmail: null, busy: false, err: "" };
+  try { var st = JSON.parse(localStorage.getItem(STORE) || "null"); if (st && st.answers) { S.answers = st.answers; S.page = st.page || 0; S.saved = !!st.saved; S.screen = st.screen === "processing" ? "account" : (st.screen || "welcome"); S.funnelStep = st.funnelStep || 0; } } catch (e) {}
+  function persist() { try { localStorage.setItem(STORE, JSON.stringify({ screen: S.screen, page: S.page, answers: S.answers, funnelStep: S.funnelStep, saved: S.saved })); } catch (e) {} }
+
+  function key(si, i) { return SECTIONS[si].id + "-" + i; }
+  function answered() { return Object.keys(S.answers).length; }
+  function pageDone(p) { for (var i = 0; i < SECTIONS[p].items.length; i++) if (!S.answers[key(p, i)]) return false; return true; }
+  function allDone() { return answered() >= 25; }
+
+  // ---- Scoring (same maths as the app's computeCheckIn) -------------------
+  function compute() {
+    var a = S.answers, states = {}, traits = {};
+    SECTIONS.forEach(function (sec, si) {
+      var t = 0; sec.items.forEach(function (_, i) { t += a[key(si, i)] || 0; });
+      var m = Math.round((t / sec.items.length) * 100) / 100;
+      (si < 5 ? states : traits)[sec.id] = m;
+    });
+    var raw = SECTIONS.slice(0, 5).map(function (s) { return ((states[s.id] - 1) / 4) * 20; });
+    var index = Math.round(raw.reduce(function (x, y) { return x + y; }, 0));
+    // Per-state points that add up exactly to the index.
+    var pts = raw.map(Math.floor), left = index - pts.reduce(function (x, y) { return x + y; }, 0);
+    raw.map(function (r, i) { return { i: i, f: r - Math.floor(r) }; }).sort(function (x, y) { return y.f - x.f; }).slice(0, Math.max(0, left)).forEach(function (o) { pts[o.i]++; });
+    return { states: states, traits: traits, index: index, points: pts };
+  }
+  function scores() {
+    var c = compute();
+    var states = SECTIONS.slice(0, 5).map(function (s, i) { return { name: s.name, mean: c.states[s.id], points: c.points[i] }; });
+    var traits = SECTIONS.slice(5).map(function (s) { return { name: s.name, abbr: s.abbr, mean: c.traits[s.id] }; });
+    var top = states[0], low = states[0];
+    states.forEach(function (s) { if (s.mean > top.mean) top = s; if (s.mean < low.mean) low = s; });
+    var lowCount = states.filter(function (s) { return s.mean === low.mean; }).length;
+    var allLevel = top.mean === low.mean;
+    if (lowCount > 1) low = { name: low.name, mean: low.mean, tied: true, count: lowCount, allLevel: allLevel };
+    return { states: states, traits: traits, index: c.index, top: top, low: low, raw: c };
+  }
+  function band(index, tie) {
+    var level = tie && tie.allLevel, several = tie && tie.tied && !tie.allLevel, n = tie && tie.count ? tie.count : 0;
+    var many = " Your " + (n === 2 ? "two" : (n === 3 ? "three" : "four")) + " lowest states are level, so raise them together rather than picking one.";
+    if (index >= 80) return { label: "Compounding", note: level ? "Your states reinforce each other, and none is lagging. Hold the line and raise the load." : (several ? "Your states reinforce each other." + many : "Your states reinforce each other. Hold the line and raise the load.") };
+    if (index >= 60) return { label: "Consistent", note: level ? "The habit is real and it is even across all five. Raise the load together rather than chasing a weak point." : (several ? "The habit is real." + many : "The habit is real. One weak state is what is capping the rest.") };
+    if (index >= 40) return { label: "Developing", note: level ? "The foundation is in and it is level. Hold all five at this standard and add load before variety." : (several ? "The foundation is in." + many : "The foundation is in. Pick one state and make it boring before you add another.") };
+    return { label: "Foundational", note: level ? "Start with the standard, not the selection — all five are level, so raise the floor together." : (several ? "Start with the floor, not the selection." + many : "Start narrow. One state, one week, repeated — the index follows.") };
+  }
+  function tag(m) { return m >= 3.8 ? "Strong" : (m <= 2.5 ? "Thin" : "Holding"); }
+  function traitNote(name, m) {
+    var t = {
+      Openness: ["You seek out new ground and learn by trying it.", "You are open when it is useful and steady otherwise.", "You prefer the known route; novelty costs you energy."],
+      Conscientiousness: ["You plan and you finish — this is your engine.", "You follow through when the stakes are clear.", "Structure is not yet doing the work for you."],
+      Extraversion: ["People charge you up. Use rooms deliberately.", "You move between social and solitary work comfortably.", "You do your best thinking alone. Protect that."],
+      Agreeableness: ["You weigh your effect on others before you act.", "You cooperate without losing your own position.", "You lead with your own position first."],
+      Neuroticism: ["Stress registers strongly and fast. Build recovery in.", "You feel pressure but it does not run the day.", "You stay level under pressure."]
+    }[name];
+    return m >= 3.8 ? t[0] : (m <= 2.5 ? t[2] : t[1]);
+  }
+  function insights(sc) {
+    var tied = !!sc.low.tied, m = {};
+    sc.states.forEach(function (s) { m[s.name] = s.mean; }); sc.traits.forEach(function (t) { m[t.name] = t.mean; });
+    var low = tied ? null : sc.low.name;
+    var pick = function (n, hi, mid, lo) { var v = m[n] || 0; return v >= 3.8 ? hi : (v <= 2.5 ? lo : mid); };
+    return [
+      { name: "Integrity", title: "Word and action", body: pick("Integrity", "What you say and what you do already match. That is the hardest one — use it as leverage on the others.", "You keep most promises. Name the one you break most often and cut it rather than repeat it.", "The gap is between stating and doing. Make one promise this week small enough that you cannot miss it.") },
+      { name: "Clarity", title: "Focus and decision", body: pick("Clarity", "You decide and move. Guard the conditions that make that possible.", "Focus holds until the environment breaks it. Fix the environment, not the willpower.", "Decisions are queuing up. One decision, made today, clears more than an hour of work.") },
+      { name: "Conscientiousness", title: "Follow-through", body: pick("Conscientiousness", "Your routines carry you. Add load before you add novelty.", "You finish what is scheduled. Schedule more of what matters.", "Intent is outrunning structure. Put one item on a fixed time and let it prove itself.") },
+      { name: "Neuroticism", title: "Load and recovery", body: pick("Neuroticism", "Pressure lands hard on you. Recovery is training, not rest — put it in the plan.", "You feel the pressure and still function. Keep one reliable reset available.", "You run level under stress. That stability is a resource other people borrow.") },
+      { name: "Growth", title: "Compounding capability", body: pick("Growth", tied ? "You go after capability daily. Point it at your tied-lowest states and the index moves fastest." : "You go after capability daily. Point it at your lowest state and the index moves fastest.", "You grow when challenged. Choose the challenge instead of waiting for it.", tied ? "Growth is the cheapest state to raise. Ten minutes a day, across the states that are level at the bottom." : "Growth is the cheapest state to raise. One new skill, ten minutes, every day.") }
+    ].map(function (x) { x.isLow = x.name === low; return x; });
+  }
+  function radar(sc) {
+    var cx = 150, cy = 146, r = 104;
+    var pt = function (i, k) { var a = (i * 72 - 90) * Math.PI / 180; return [cx + Math.cos(a) * r * k, cy + Math.sin(a) * r * k]; };
+    var f = function (p) { return p[0].toFixed(1) + "," + p[1].toFixed(1); };
+    var isLow = function (n) { return !sc.low.tied && n === sc.low.name; };
+    var out = "";
+    [0.25, 0.5, 0.75, 1].forEach(function (k) { out += '<polygon points="' + sc.states.map(function (s, i) { return f(pt(i, k)); }).join(" ") + '" fill="none" stroke="rgba(26,26,26,0.14)"/>'; });
+    sc.states.forEach(function (s, i) { var p = pt(i, 1); out += '<line x1="150" y1="146" x2="' + p[0].toFixed(1) + '" y2="' + p[1].toFixed(1) + '" stroke="rgba(26,26,26,0.14)"/>'; });
+    var vals = sc.states.map(function (s, i) { return pt(i, Math.max(0.06, s.mean / 5)); });
+    out += '<polygon points="' + vals.map(f).join(" ") + '" fill="rgba(23,38,92,0.14)" stroke="#17265c" stroke-width="2"/>';
+    vals.forEach(function (p, i) { out += '<rect x="' + (p[0] - 4).toFixed(1) + '" y="' + (p[1] - 4).toFixed(1) + '" width="8" height="8" fill="' + (isLow(sc.states[i].name) ? "#D93B26" : "#17265c") + '"/>'; });
+    var anchors = ["middle", "start", "start", "end", "end"];
+    sc.states.forEach(function (s, i) { var p = pt(i, 1.19); out += '<text x="' + p[0].toFixed(1) + '" y="' + (p[1] + 4).toFixed(1) + '" text-anchor="' + anchors[i] + '" style="font-family:Poppins,sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase" fill="' + (isLow(s.name) ? "#D93B26" : "#5a5a5a") + '">' + s.name + '</text>'; });
+    return '<svg viewBox="-72 -14 444 328" style="width:100%;height:auto;display:block">' + out + '</svg>';
+  }
+
+  // ---- Saving to Supabase -------------------------------------------------
+  function buildRow(userId) {
+    var c = compute();
+    return { user_id: userId, source: "web", cycle: null, answers: S.answers, states: c.states, traits: c.traits, benefit_index: c.index };
+  }
+  async function saveForUser(user) {
+    if (!sb || !user || !allDone()) return false;
+    var ex = await sb.from("check_ins").select("id").eq("user_id", user.id).eq("source", "web").limit(1);
+    if (ex.error) throw ex.error;
+    if (!(ex.data && ex.data.length)) {
+      var ins = await sb.from("check_ins").insert(buildRow(user.id));
+      if (ins.error) throw ins.error;
+    }
+    S.saved = true; S.waitEmail = null;
+    try { localStorage.removeItem(PENDING); } catch (e) {}
+    persist();
+    return true;
+  }
+  // Came back from the confirm-email link (or already signed in) with a result waiting.
+  async function resumePending() {
+    if (!sb) return;
+    var pend = null; try { pend = JSON.parse(localStorage.getItem(PENDING) || "null"); } catch (e) {}
+    if (!pend || S.saved) return;
+    var ses = await sb.auth.getSession();
+    var user = ses.data && ses.data.session && ses.data.session.user;
+    if (!user) { S.waitEmail = pend.email; render(); return; }
+    try { await saveForUser(user); if (S.screen === "account") S.screen = "results"; render(); } catch (e) { console.error(e); }
+  }
+
+  function friendly(msg) {
+    msg = String(msg || "");
+    if (/already registered|already exists/i.test(msg)) return "There's already a 10-9 account with that email. Use 'I have an account' and sign in.";
+    if (/Invalid login/i.test(msg)) return "That email and password don't match. Check them and try again.";
+    if (/Email not confirmed/i.test(msg)) return "Confirm your email first: open the link we sent you, then sign in.";
+    if (/Password should be/i.test(msg)) return "Use a password of at least 6 characters.";
+    if (/rate limit|too many/i.test(msg)) return "Too many tries in a row. Wait a minute and try again.";
+    if (/valid email|invalid.*email/i.test(msg)) return "That email address doesn't look right.";
+    return msg || "Something went wrong. Try again.";
+  }
+
+  async function submitAccount(form) {
+    if (S.busy) return;
+    var email = form.email.value.trim(), pw = form.pw.value, name = form.nm ? form.nm.value.trim() : "";
+    S.err = "";
+    if (!sb) { S.err = "Can't reach 10-9 right now. Check your connection and try again."; return render(); }
+    if (S.mode === "create") {
+      if (!name) { S.err = "Add your first name."; return render(); }
+      if (pw.length < 6) { S.err = "Use a password of at least 6 characters."; return render(); }
+      if (!form.ok.checked) { S.err = "Tick the box to agree to the privacy policy."; return render(); }
+    }
+    S.busy = true; render();
+    try {
+      var res;
+      if (S.mode === "create") {
+        res = await sb.auth.signUp({ email: email, password: pw, options: { data: { full_name: name }, emailRedirectTo: PAGE_URL } });
+        if (res.error) throw res.error;
+        // Supabase returns a user with no identities when the email is already taken.
+        if (res.data.user && res.data.user.identities && res.data.user.identities.length === 0) throw new Error("already registered");
+      } else {
+        res = await sb.auth.signInWithPassword({ email: email, password: pw });
+        if (res.error) throw res.error;
+      }
+      var session = res.data.session;
+      if (session) {
+        await saveForUser(session.user);
+      } else {
+        // Email confirmation is switched on: keep the result and save it when they come back.
+        try { localStorage.setItem(PENDING, JSON.stringify({ email: email, at: Date.now() })); } catch (e) {}
+        S.waitEmail = email;
+      }
+      S.busy = false; S.screen = "results"; persist(); window.scrollTo(0, 0); render();
+    } catch (e) {
+      S.busy = false; S.err = friendly(e && e.message); render();
+    }
+  }
+
+  // ---- Rendering ----------------------------------------------------------
+  var app = document.getElementById("app");
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function go(screen) { S.screen = screen; persist(); window.scrollTo(0, 0); render(); }
+
+  function vWelcome() {
+    var lines = ["You don’t rise to your goals — you fall to your systems.", "Pressure creates clarity.", "Twenty-five statements. No right answers.", "One index at the end, and one state to work."];
+    var resume = answered() > 0 && answered() < 25;
+    return '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));min-height:100vh;background:var(--deep)">' +
+      '<div style="position:relative;min-height:340px;background:var(--ink);overflow:hidden"><img src="hero.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.08)"></div>' +
+      '<div style="background:var(--navy);padding:46px 40px 40px;display:flex;flex-direction:column">' +
+        '<div class="k" style="letter-spacing:.22em;color:var(--coral)">10-9 &mdash; Assessment</div>' +
+        '<h1 class="hero">Discipline is a <span class="plate" style="color:var(--deep)">skill</span></h1>' +
+        '<p style="font-size:16px;line-height:1.55;color:rgba(255,255,255,.78);margin-top:22px;max-width:40ch">A 25-item assessment to map your discipline profile and personality traits.</p>' +
+        '<div style="margin-top:30px;display:flex;flex-direction:column;gap:16px">' + lines.map(function (l) { return '<div style="display:flex;gap:16px;align-items:flex-start"><div style="flex:0 0 22px;height:2px;background:var(--coral);margin-top:12px"></div><div style="font-size:15px;font-weight:500;line-height:1.5;color:#fff">' + l + '</div></div>'; }).join("") + '</div>' +
+        '<div style="margin-top:auto;padding-top:34px"><div class="cta"><button data-a="begin">' + (resume ? "Carry on" : "Begin Assessment") + '</button></div>' +
+        '<div style="display:flex;gap:22px;margin-top:26px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.65)"><span>25 items</span><span>10 sections</span><span>4 minutes</span></div></div>' +
+      '</div></div>';
+  }
+
+  function vQuiz() {
+    var p = S.page, sec = SECTIONS[p], done = pageDone(p), last = p === SECTIONS.length - 1;
+    var pager = SECTIONS.map(function (s, i) { return '<div class="' + (i === p ? "cur" : (pageDone(i) ? "done" : "")) + '">' + (i + 1) + '</div>'; }).join("");
+    var items = sec.items.map(function (text, i) {
+      var cur = S.answers[key(p, i)];
+      return '<div class="q"><div class="qh"><div class="qn">' + (i + 1) + '</div><p>' + esc(text) + '</p></div><div class="opts">' +
+        [1, 2, 3, 4, 5].map(function (v) { return '<button type="button" class="opt' + (cur === v ? " on" : "") + '" data-a="ans" data-i="' + i + '" data-v="' + v + '"><b>' + v + '</b><span>' + LABELS[v - 1] + '</span></button>'; }).join("") + '</div></div>';
+    }).join("");
+    return '<div style="min-height:100vh;display:flex;flex-direction:column">' +
+      '<div class="bar"><div class="wrap"><div class="brow"><div class="logo">10-9</div><div class="k" style="color:var(--coral)">' + (p < 9 ? "0" + (p + 1) : "10") + ' &mdash; ' + sec.group.toUpperCase() + '</div><div class="right">' + answered() + ' / 25 answered</div></div>' +
+      '<h2 class="t"><span class="plate" style="padding:0 9px">' + sec.name + '</span></h2><div style="font-size:15px;font-weight:600;color:#fff;margin-top:12px">' + sec.note + '</div><div class="pager">' + pager + '</div></div></div>' +
+      '<div style="flex:1;padding:34px 22px 30px" class="wrap">' + items + '</div>' +
+      '<div class="foot"><div class="wrap"><button class="bk" data-a="back">Back</button><button class="nx" data-a="next"' + (done ? "" : " disabled") + '>' + (last ? "Submit assessment" : "Next section") + '</button></div></div></div>';
+  }
+
+  function vProcessing() {
+    var i0 = S.statusIdx;
+    return '<div style="background:var(--ink);min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:40px 26px;animation:fadein .6s ease both"><div class="wrap">' +
+      '<div class="k" style="letter-spacing:.22em;color:var(--coral)">Processing</div>' +
+      '<h2 class="big" style="color:#fff;margin:22px 0 36px;max-width:24ch">' + STATUS[Math.min(i0, 2)] + '</h2>' +
+      '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">' + STATUS.map(function (t, i) {
+        var css = i < i0 ? "background:#141414" : (i === i0 ? "background:#141414;border-bottom:3px solid var(--coral)" : "background:rgba(255,255,255,.05)");
+        return '<div style="padding:18px 16px;min-height:92px;' + css + '"><div class="k" style="letter-spacing:.18em;color:' + (i === i0 ? "var(--coral)" : "rgba(255,255,255,.45)") + '">0' + (i + 1) + '</div><div style="font-size:14px;font-weight:600;line-height:1.4;margin-top:10px;color:' + (i <= i0 ? "#fff" : "rgba(255,255,255,.45)") + '">' + STATUS_SHORT[i] + '</div></div>';
+      }).join("") + '</div></div></div>';
+  }
+
+  function vAccount() {
+    var create = S.mode === "create";
+    return '<div style="min-height:100vh;display:flex;flex-direction:column">' +
+      '<div class="bar"><div class="wrap" style="max-width:560px"><div class="brow"><div class="logo">10-9</div><div class="k" style="color:var(--coral)">Your profile is ready</div></div>' +
+      '<h2 class="t">Save it as <span class="plate" style="padding:0 9px">day one</span></h2>' +
+      '<div style="font-size:15px;line-height:1.5;color:rgba(255,255,255,.82);margin-top:12px">Create your free 10-9 account to see your results. You’ll use the same email and password to sign in to the app, and at three weeks the app re-measures you against today.</div></div></div>' +
+      '<form id="acct" novalidate class="wrap" style="max-width:560px;padding:6px 22px 40px">' +
+        '<div class="tabs"><button type="button" data-a="mode" data-m="create" class="' + (create ? "on" : "") + '">Create account</button><button type="button" data-a="mode" data-m="signin" class="' + (create ? "" : "on") + '">I have an account</button></div>' +
+        (create ? '<label class="field"><span>First name</span><input name="nm" autocomplete="given-name" maxlength="40"></label>' : '') +
+        '<label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" inputmode="email" required></label>' +
+        '<label class="field"><span>Password' + (create ? ' (6+ characters)' : '') + '</span><input name="pw" type="password" autocomplete="' + (create ? "new-password" : "current-password") + '" required></label>' +
+        (create ? '<label class="tick"><input type="checkbox" name="ok"><span>I agree to the <a href="privacy.html" target="_blank" rel="noopener">privacy policy</a>. My answers are saved to my 10-9 account, never sold or shared.</span></label>' : '') +
+        '<div class="err" id="err"' + (S.err ? ' style="display:block"' : '') + '>' + esc(S.err) + '</div>' +
+        '<div style="margin-top:28px" class="cta on-light full"><button type="submit"' + (S.busy ? " disabled" : "") + '>' + (S.busy ? "Saving…" : (create ? "See my results" : "Sign in and see results")) + '</button></div>' +
+        '<div style="margin-top:26px"><button type="button" class="lnk" data-a="backquiz">Back to the questions</button></div>' +
+      '</form></div>';
+  }
+
+  function vResults() {
+    var sc = scores(), b = band(sc.index, sc.low), isLow = function (n) { return !sc.low.tied && n === sc.low.name; };
+    var banner = S.saved ? '<div class="banner ok">Saved to your 10-9 account as day one. Sign in to the app with the same email and password.</div>'
+      : (S.waitEmail ? '<div class="banner wait">One step left: open the email we sent to ' + esc(S.waitEmail) + ' and tap the link. That saves this as your day one.</div>' : '');
+    var low = sc.low.allLevel ? { label: "Lowest state", value: "Level", note: "All five states scored " + sc.low.mean.toFixed(1) + ". No single weak point.", fg: "#fff", nf: "rgba(255,255,255,.6)" }
+      : (sc.low.tied ? { label: "Lowest states", value: sc.low.count + " tied", note: "Level at " + sc.low.mean.toFixed(1) + " of 5. Work them together.", fg: "var(--coral)", nf: "var(--coral)" }
+      : { label: "Lowest state", value: sc.low.name, note: sc.low.mean.toFixed(1) + " of 5. The one to work next.", fg: "var(--coral)", nf: "var(--coral)" });
+    var metrics = [
+      { num: "01", label: "Top state", value: sc.top.name, note: sc.top.mean.toFixed(1) + " of 5. Your strongest ground.", fg: "#fff", nf: "rgba(255,255,255,.6)" },
+      { num: "02", label: low.label, value: low.value, note: low.note, fg: low.fg, nf: low.nf },
+      { num: "03", label: "Benefit index", value: sc.index + " / 100", note: b.label + ". Impact level.", fg: "#fff", nf: "rgba(255,255,255,.6)" }
+    ];
+    var h = banner +
+      '<div style="background:var(--navy);padding:18px 22px 34px"><div class="w10"><div class="brow"><div class="logo">10-9</div><div class="k" style="color:var(--coral)">Results &mdash; 25 items scored</div><button data-a="restart" class="right" style="background:none;border:0;min-height:44px;cursor:pointer;letter-spacing:.16em">Retake</button></div>' +
+      '<h2 class="big" style="color:#fff;margin-top:18px">Your <span class="plate">discipline</span> profile</h2>' +
+      '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;margin-top:30px;background:rgba(255,255,255,.22)">' + metrics.map(function (m) {
+        return '<div style="background:var(--navy);padding:20px 20px 22px"><div class="k" style="letter-spacing:.18em;color:' + m.nf + '">' + m.num + ' &mdash; ' + m.label + '</div><div style="font-size:27px;font-weight:800;line-height:1.1;letter-spacing:-.015em;text-transform:uppercase;margin-top:12px;color:' + m.fg + '">' + m.value + '</div><div style="font-size:13px;line-height:1.45;color:rgba(255,255,255,.72);margin-top:6px">' + m.note + '</div></div>';
+      }).join("") + '</div></div></div>';
+
+    h += '<div class="sec"><div class="k" style="color:var(--red)">01 &mdash; Five States</div><h3>Where you stand.</h3><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:26px;align-items:start"><div style="background:var(--grey);padding:18px">' + radar(sc) + '</div><div>' +
+      sc.states.map(function (s) { var lw = isLow(s.name); return '<div style="border-top:1px solid var(--rule);padding:14px 0"><div style="display:flex;align-items:baseline;gap:12px"><div style="font-size:16px;font-weight:800;text-transform:uppercase;color:' + (lw ? "var(--red)" : "var(--ink)") + '">' + s.name + '</div><div style="margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--b3)">' + tag(s.mean) + '</div><div style="font-size:20px;font-weight:800">' + s.mean.toFixed(1) + '</div></div><div style="margin-top:9px;height:8px;background:var(--grey)"><div style="height:8px;width:' + Math.round(s.mean / 5 * 100) + '%;background:' + (lw ? "var(--red)" : "var(--navy)") + '"></div></div></div>'; }).join("") + '</div></div></div>';
+
+    h += '<div style="background:var(--ink);margin-top:48px;padding:44px 22px"><div class="w10"><div class="k" style="color:var(--coral)">02 &mdash; Big Five</div><h3 style="color:#fff">How you are wired.</h3>' +
+      '<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;align-items:end;height:210px;margin-bottom:22px">' + sc.traits.map(function (t) { return '<div style="display:flex;flex-direction:column;height:100%;gap:8px"><div style="font-size:17px;font-weight:800;text-align:center;color:#fff">' + t.mean.toFixed(1) + '</div><div style="flex:1;min-height:0;display:flex;flex-direction:column;justify-content:flex-end"><div style="height:' + Math.max(6, Math.round(t.mean / 5 * 100)) + '%;width:100%;background:var(--coral)"></div></div><div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);text-align:center">' + t.abbr + '</div></div>'; }).join("") + '</div>' +
+      '<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr))">' + sc.traits.map(function (t) { return '<div style="background:#141414;padding:18px 16px 20px"><div class="k" style="letter-spacing:.16em;color:var(--coral)">' + t.name + '</div><p style="font-size:14px;line-height:1.5;color:rgba(255,255,255,.82);margin-top:10px">' + traitNote(t.name, t.mean) + '</p></div>'; }).join("") + '</div></div></div>';
+
+    h += '<div class="sec"><div class="k" style="color:var(--red)">03 &mdash; Benefit Index</div><h3>One number. One outcome.</h3><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;align-items:start">' +
+      '<div style="background:var(--red);padding:26px 24px 28px"><div class="k" style="letter-spacing:.18em;color:rgba(255,255,255,.8)">Impact Level</div><div style="font-size:88px;font-weight:800;line-height:.94;letter-spacing:-.03em;color:#fff;margin-top:14px">' + sc.index + '</div><div style="font-size:22px;font-weight:800;text-transform:uppercase;color:#fff;margin-top:8px">' + b.label + '</div><p style="font-size:14px;line-height:1.55;color:rgba(255,255,255,.9);margin-top:14px">' + b.note + '</p></div>' +
+      '<div><div style="font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--b3);margin-bottom:6px">Breakdown &mdash; 20 points per state</div>' + sc.states.map(function (s) { return '<div style="border-top:1px solid var(--rule);padding:13px 0;display:flex;align-items:center;gap:12px"><div style="font-size:16px;font-weight:700;text-transform:uppercase">' + s.name + '</div><div style="margin-left:auto;width:96px;height:6px;background:var(--grey)"><div style="height:6px;width:' + Math.round(s.points / 20 * 100) + '%;background:var(--ink)"></div></div><div style="font-size:17px;font-weight:800;width:34px;text-align:right">' + s.points + '</div></div>'; }).join("") +
+      '<div style="background:var(--ink);margin-top:14px;padding:14px 16px;display:flex;align-items:center;gap:12px"><div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7)">Total</div><div style="margin-left:auto;font-size:22px;font-weight:800;color:#fff">' + sc.index + '</div><div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.5)">/ 100</div></div></div></div></div>';
+
+    h += '<div class="sec"><div class="k" style="color:var(--red)">04 &mdash; Insights</div><h3>What to do about it.</h3><div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr))">' + insights(sc).map(function (x) {
+      return '<div style="padding:20px 18px 22px;background:' + (x.isLow ? "var(--ink)" : "var(--grey)") + '"><div class="k" style="letter-spacing:.16em;color:' + (x.isLow ? "var(--coral)" : "var(--red)") + '">' + (x.isLow ? "Work on this next" : x.name) + '</div><div style="font-size:18px;font-weight:800;text-transform:uppercase;margin-top:10px;color:' + (x.isLow ? "#fff" : "var(--ink)") + '">' + x.title + '</div><p style="font-size:14px;line-height:1.5;margin-top:8px;color:' + (x.isLow ? "rgba(255,255,255,.82)" : "var(--b2)") + '">' + x.body + '</p></div>';
+    }).join("") + '</div></div>';
+
+    if (S.showReport) {
+      var rows = ""; SECTIONS.forEach(function (s, si) { s.items.forEach(function (t, i) { rows += '<tr><td style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--b3);white-space:nowrap">' + s.name + '</td><td style="font-size:13px;color:var(--b2)">' + esc(t) + '</td><td style="text-align:right;font-size:15px;font-weight:800">' + (S.answers[key(si, i)] || "—") + '</td></tr>'; }); });
+      h += '<div class="sec"><div class="k" style="color:var(--red)">05 &mdash; Full Report</div><h3 style="margin-bottom:20px">Every item, as answered.</h3><table><thead><tr><th>Section</th><th>Item</th><th style="text-align:right">Score</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+    }
+
+    h += '<div style="max-width:1000px;margin:44px auto 0;padding:0 22px 54px"><div style="background:var(--grey);padding:34px 28px 32px;display:flex;flex-wrap:wrap;gap:26px;align-items:center"><div style="flex:1 1 260px;min-width:0"><div style="font-size:24px;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;line-height:1.1">Measured. Now <span class="plate dk">work it</span></div><p style="font-size:14px;line-height:1.5;color:var(--b2);margin-top:10px;max-width:44ch">Every day is a round: all five states, worked daily. Your first review lands at three weeks.</p></div>' +
+      '<div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center"><div class="cta on-light"><button data-a="round">Start Round 1</button></div><button class="lnk" data-a="report">' + (S.showReport ? "Hide full report" : "View full report") + '</button></div></div></div>';
+    return h;
+  }
+
+  function vFunnel() {
+    var steps = [
+      { kicker: "Round 1", title: "Every day is a round.", body: "Each round is one day. You work all five states in it, and at three weeks you stop and review how far the index has moved.",
+        cards: [["Cadence", "One round a day", "All five states, every day. Show up, work it, log it."], ["Effort", "Ten minutes", "Short and repeated beats long and occasional."], ["Review", "Three weeks in", "The same 25 items again, to see what the daily rounds have built."]], cta: "Continue" },
+      { kicker: "Why this matters", title: "One state lifts the rest.", body: "The five states are not independent. You work all five every day, and raising your lowest removes the ceiling the other four sit under.",
+        cards: [["Mechanism", "Remove the cap", "Your lowest state limits what the others can express."], ["Order", "All five, daily", "Every state is addressed in each day’s round. The three-week review shows how they are moving."], ["Record", "Everything logged", "Every daily round is kept, so progress is a fact, not a feeling."]], cta: "Continue" },
+      { kicker: "Begin", title: "Download the app and start today.", body: (S.saved ? "Your profile is saved to your account. " : "") + "Download 10-9, sign in with the same email and password, and today is round 1 — all five states, every day, with your first review at three weeks.",
+        cards: [["Starts", "Today", "First check-in is tonight."], ["Focus", "Lowest state", "Selected from the assessment you just completed."], ["First review", "Three weeks", "A checkpoint, not a finish line. Re-measure, then keep going."]], cta: "Download the app" }
+    ];
+    var f = steps[Math.min(S.funnelStep, 2)], last = S.funnelStep >= 2;
+    var ios = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    var next = last
+      ? (ios ? '<div class="nx" style="background:var(--grey);color:var(--b3);cursor:default">iPhone version coming soon</div>' : '<a class="nx" href="' + PLAY + '" target="_blank" rel="noopener" data-a="play">Download the app</a>')
+      : '<button class="nx" data-a="fnext">' + f.cta + '</button>';
+    return '<div style="min-height:100vh;display:flex;flex-direction:column">' +
+      '<div class="bar" style="padding-bottom:22px"><div class="wrap" style="max-width:900px"><div class="brow"><div class="logo">10-9</div><div class="k" style="color:var(--coral)">' + f.kicker + '</div><div class="right">Step ' + (S.funnelStep + 1) + ' of 3</div></div>' +
+      '<div style="display:flex;gap:4px;margin-top:18px">' + [0, 1, 2].map(function (i) { return '<div style="flex:1;height:4px;background:' + (i <= S.funnelStep ? "var(--coral)" : "rgba(255,255,255,.25)") + '"></div>'; }).join("") + '</div></div></div>' +
+      '<div class="wrap" style="flex:1;max-width:900px;padding:46px 22px 34px"><h2 class="big" style="max-width:20ch">' + f.title + '</h2><p style="font-size:17px;line-height:1.55;color:var(--b2);margin-top:20px;max-width:48ch">' + f.body + '</p>' +
+      '<div class="grid" style="margin-top:34px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">' + f.cards.map(function (c) { return '<div class="card"><div class="k">' + c[0] + '</div><div class="ti">' + c[1] + '</div><p>' + c[2] + '</p></div>'; }).join("") + '</div>' +
+      (last && ios ? '<p style="font-size:14px;line-height:1.5;color:var(--b2);margin-top:22px">10-9 is on Android now. The iPhone version is on its way — your account and results will be waiting for it.</p>' : '') +
+      '</div><div class="foot"><div class="wrap" style="max-width:900px"><button class="bk" data-a="fback">Back</button>' + next + '</div></div></div>';
+  }
+
+  function render() {
+    var v = { welcome: vWelcome, quiz: vQuiz, processing: vProcessing, account: vAccount, results: vResults, funnel: vFunnel }[S.screen] || vWelcome;
+    if ((S.screen === "results" || S.screen === "funnel" || S.screen === "account") && !allDone()) { S.screen = "quiz"; v = vQuiz; }
+    // Keep typed values when the account form re-renders (e.g. to show an error).
+    var keep = {}; var f0 = document.getElementById("acct");
+    if (f0) Array.prototype.forEach.call(f0.elements, function (el) { if (el.name) keep[el.name] = el.type === "checkbox" ? el.checked : el.value; });
+    app.innerHTML = v();
+    var f1 = document.getElementById("acct");
+    if (f1) {
+      Array.prototype.forEach.call(f1.elements, function (el) { if (el.name && keep[el.name] !== undefined) { if (el.type === "checkbox") el.checked = keep[el.name]; else el.value = keep[el.name]; } });
+      f1.addEventListener("submit", function (e) { e.preventDefault(); submitAccount(f1); });
+    }
+    postHeight();
+  }
+
+  var timer = null;
+  function startProcessing() {
+    S.screen = "processing"; S.statusIdx = 0; window.scrollTo(0, 0); render();
+    clearInterval(timer);
+    timer = setInterval(function () {
+      if (S.statusIdx + 1 >= STATUS.length) {
+        clearInterval(timer);
+        // Already signed in (e.g. retake, or came back): save straight away and skip the form.
+        (async function () {
+          var user = null;
+          try { if (sb) { var ses = await sb.auth.getSession(); user = ses.data && ses.data.session && ses.data.session.user; } } catch (e) {}
+          if (user) { try { await saveForUser(user); go("results"); return; } catch (e) { console.error(e); } }
+          go(S.saved ? "results" : "account");
+        })();
+      } else { S.statusIdx++; render(); }
+    }, 1400);
+  }
+
+  app.addEventListener("click", function (e) {
+    var t = e.target.closest("[data-a]"); if (!t) return;
+    var a = t.getAttribute("data-a");
+    if (a === "begin") { S.screen = "quiz"; if (!answered()) S.page = 0; go("quiz"); }
+    else if (a === "ans") {
+      var p = S.page, i = +t.getAttribute("data-i");
+      S.answers[key(p, i)] = +t.getAttribute("data-v"); persist(); render();
+      if (pageDone(p)) setTimeout(function () { if (S.screen === "quiz" && S.page === p) advance(); }, 340);
+    }
+    else if (a === "next") { if (pageDone(S.page)) advance(); }
+    else if (a === "back") { if (S.page === 0) go("welcome"); else { S.page--; go("quiz"); } }
+    else if (a === "mode") { S.mode = t.getAttribute("data-m"); S.err = ""; render(); }
+    else if (a === "backquiz") { S.page = SECTIONS.length - 1; go("quiz"); }
+    else if (a === "restart") { S.answers = {}; S.page = 0; S.funnelStep = 0; S.showReport = false; go("welcome"); }
+    else if (a === "report") { S.showReport = !S.showReport; render(); }
+    else if (a === "round") { S.funnelStep = 0; go("funnel"); }
+    else if (a === "fback") { if (S.funnelStep === 0) go("results"); else { S.funnelStep--; go("funnel"); } }
+    else if (a === "fnext") { S.funnelStep = Math.min(2, S.funnelStep + 1); go("funnel"); }
+  });
+  function advance() {
+    if (S.page < SECTIONS.length - 1) { S.page++; go("quiz"); }
+    else startProcessing();
+  }
+
+  // When embedded in Webflow as an iframe, tell the parent page how tall we are.
+  function postHeight() {
+    if (window.parent === window) return;
+    requestAnimationFrame(function () { try { window.parent.postMessage({ type: "10-9-height", height: document.documentElement.scrollHeight, screen: S.screen }, "*"); } catch (e) {} });
+  }
+  if (window.ResizeObserver) new ResizeObserver(postHeight).observe(document.body);
+  var _scroll = window.scrollTo.bind(window);
+  window.scrollTo = function (x, y) { _scroll(x, y); if (window.parent !== window) try { window.parent.postMessage({ type: "10-9-top" }, "*"); } catch (e) {} };
+
+  if (sb) sb.auth.onAuthStateChange(function (ev) { if (ev === "SIGNED_IN") resumePending(); });
+  render();
+  resumePending();
+})();
+</script>
+</body>
+</html>
