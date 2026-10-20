@@ -280,7 +280,7 @@ th{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--b3);
     try {
       var res;
       if (S.mode === "create") {
-        res = await sb.auth.signUp({ email: email, password: pw, options: { data: { full_name: name }, emailRedirectTo: PAGE_URL } });
+        res = await sb.auth.signUp({ email: email, password: pw, options: { data: { full_name: name, tn_web_answers: S.answers }, emailRedirectTo: PAGE_URL } });
         if (res.error) throw res.error;
         // Supabase returns a user with no identities when the email is already taken.
         if (res.data.user && res.data.user.identities && res.data.user.identities.length === 0) throw new Error("already registered");
@@ -293,8 +293,9 @@ th{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--b3);
         await saveForUser(session.user);
       } else {
         // Email confirmation is switched on: keep the result and save it when they come back.
-        try { localStorage.setItem(PENDING, JSON.stringify({ email: email, at: Date.now() })); } catch (e) {}
-        S.waitEmail = email;
+        // Email confirmation is on. The answers went up with the sign-up and are
+        // already saved; they just need to confirm before they can sign in.
+        S.saved = true; S.waitEmail = email;
       }
       S.busy = false; S.screen = "results"; persist(); window.scrollTo(0, 0); render();
     } catch (e) {
@@ -366,10 +367,20 @@ th{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--b3);
       '</form></div>';
   }
 
+  function vConfirmed() {
+    return '<div style="min-height:100vh;background:var(--navy);display:flex;flex-direction:column;justify-content:center;padding:46px 26px"><div class="wrap" style="max-width:560px">' +
+      '<div class="k" style="letter-spacing:.22em;color:var(--coral)">10-9 &mdash; Email confirmed</div>' +
+      '<h2 class="big" style="color:#fff;margin-top:22px">You\u2019re <span class="plate">in</span></h2>' +
+      '<p style="font-size:16px;line-height:1.55;color:rgba(255,255,255,.82);margin-top:20px">Your assessment is saved to your account as day one. Download 10-9 and sign in with the same email and password. At three weeks the app re-measures you against it.</p>' +
+      '<div style="margin-top:34px" class="cta"><a href="' + PLAY + '" target="_blank" rel="noopener">Get it on Google Play</a></div>' +
+      '<p style="font-size:13px;line-height:1.5;color:rgba(255,255,255,.6);margin-top:26px">On iPhone? The iPhone version is on its way \u2014 your account will be waiting for it.</p>' +
+      '</div></div>';
+  }
+
   function vResults() {
     var sc = scores(), b = band(sc.index, sc.low), isLow = function (n) { return !sc.low.tied && n === sc.low.name; };
-    var banner = S.saved ? '<div class="banner ok">Saved to your 10-9 account as day one. Sign in to the app with the same email and password.</div>'
-      : (S.waitEmail ? '<div class="banner wait">One step left: open the email we sent to ' + esc(S.waitEmail) + ' and tap the link. That saves this as your day one.</div>' : '');
+    var banner = S.waitEmail ? '<div class="banner wait">Saved as day one. One step left: confirm your email \u2014 tap the link we sent to ' + esc(S.waitEmail) + '. Then sign in to the app with the same email and password.</div>'
+      : (S.saved ? '<div class="banner ok">Saved to your 10-9 account as day one. Sign in to the app with the same email and password.</div>' : '');
     var low = sc.low.allLevel ? { label: "Lowest state", value: "Level", note: "All five states scored " + sc.low.mean.toFixed(1) + ". No single weak point.", fg: "#fff", nf: "rgba(255,255,255,.6)" }
       : (sc.low.tied ? { label: "Lowest states", value: sc.low.count + " tied", note: "Level at " + sc.low.mean.toFixed(1) + " of 5. Work them together.", fg: "var(--coral)", nf: "var(--coral)" }
       : { label: "Lowest state", value: sc.low.name, note: sc.low.mean.toFixed(1) + " of 5. The one to work next.", fg: "var(--coral)", nf: "var(--coral)" });
@@ -435,7 +446,7 @@ th{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--b3);
   }
 
   function render() {
-    var v = { welcome: vWelcome, quiz: vQuiz, processing: vProcessing, account: vAccount, results: vResults, funnel: vFunnel }[S.screen] || vWelcome;
+    var v = { welcome: vWelcome, quiz: vQuiz, processing: vProcessing, account: vAccount, results: vResults, funnel: vFunnel, confirmed: vConfirmed }[S.screen] || vWelcome;
     if ((S.screen === "results" || S.screen === "funnel" || S.screen === "account") && !allDone()) { S.screen = "quiz"; v = vQuiz; }
     // Keep typed values when the account form re-renders (e.g. to show an error).
     var keep = {}; var f0 = document.getElementById("acct");
@@ -500,6 +511,11 @@ th{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--b3);
   var _scroll = window.scrollTo.bind(window);
   window.scrollTo = function (x, y) { _scroll(x, y); if (window.parent !== window) try { window.parent.postMessage({ type: "10-9-top" }, "*"); } catch (e) {} };
 
+  // Arrived from the confirm-email link.
+  if (/type=signup|type=email/.test(location.hash) || /type=signup/.test(location.search)) {
+    S.waitEmail = null;
+    if (allDone()) { S.saved = true; S.screen = "results"; } else S.screen = "confirmed";
+  }
   if (sb) sb.auth.onAuthStateChange(function (ev) { if (ev === "SIGNED_IN") resumePending(); });
   render();
   resumePending();
