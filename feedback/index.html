@@ -19,7 +19,7 @@
 html,body{margin:0;padding:0;background:#fff;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{font-family:"Barlow",system-ui,sans-serif;color:var(--ink)}
 button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
-#app{position:relative;max-width:430px;margin:0 auto;height:var(--vh);display:flex;flex-direction:column;overflow:hidden;background:#fff;padding-top:env(safe-area-inset-top);visibility:hidden}
+#app{position:relative;max-width:430px;margin:0 auto;min-height:var(--vh);display:flex;flex-direction:column;background:#fff;padding-top:env(safe-area-inset-top);visibility:hidden}
 #app.ready{visibility:visible}
 .bp{position:relative;overflow:visible}
 .bp>.corner{position:absolute;width:11px;height:11px;color:rgba(29,31,32,.55);pointer-events:none}
@@ -41,7 +41,7 @@ button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
 .qh{padding:26px 22px 0;flex:none}
 .qh h2{font-family:"Barlow Condensed",system-ui,sans-serif;font-size:36px;font-weight:700;line-height:1;text-transform:uppercase;margin:10px 0 0;text-wrap:pretty}
 .hint{font-size:13px;color:var(--g6);margin-top:8px}
-.zone{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 22px;min-height:0}
+.zone{flex:1 0 auto;display:flex;flex-direction:column;justify-content:center;padding:0 22px}
 .zone.top{justify-content:flex-start;padding-top:24px}
 .foot{padding:12px 20px 0;display:flex;gap:8px;flex:none}
 .skip{padding:4px 20px 14px;padding-bottom:max(14px,env(safe-area-inset-bottom));min-height:44px;display:flex;justify-content:center;flex:none}
@@ -398,8 +398,12 @@ button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
   })();
 
   // Keep the footer above the on-screen keyboard.
-  function fit() { var h = window.visualViewport ? window.visualViewport.height : window.innerHeight; document.documentElement.style.setProperty("--vh", h + "px"); }
-  fit(); if (window.visualViewport) window.visualViewport.addEventListener("resize", fit); window.addEventListener("resize", fit);
+  // Full height on arrival, but never squeezed when the keyboard opens:
+  // the page just grows and scrolls instead of things overlapping.
+  var baseH = window.innerHeight;
+  function fit() { var h = window.innerHeight; if (h > baseH - 120 || h > baseH) { baseH = h; document.documentElement.style.setProperty("--vh", h + "px"); } }
+  document.documentElement.style.setProperty("--vh", baseH + "px");
+  window.addEventListener("resize", fit); window.addEventListener("orientationchange", function () { setTimeout(function () { baseH = window.innerHeight; document.documentElement.style.setProperty("--vh", baseH + "px"); }, 300); });
 
   (async function boot() {
     try { await Promise.race([document.fonts.ready, new Promise(function (r) { setTimeout(r, 2500); })]); } catch (e) {}
